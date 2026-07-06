@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Models
+models/*.pkl
+models/*.joblib
+
+# Dataset (optional if large)
+# data/
+
+# Environment Variables
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Build
+build/
+dist/
+*.egg-info/
+
+ENV/
+*.csv
+datasets/
+logs/
+models/
+results/
+checkpoints/
+*.h5
+*.pt
+*.ckpt
+*.log
+*.csv
+.DS_Store

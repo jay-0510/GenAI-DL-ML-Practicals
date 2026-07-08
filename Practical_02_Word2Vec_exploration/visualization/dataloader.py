@@ -6,7 +6,27 @@ Import this in your notebook or any script — keeps the notebook clean.
 """
 
 import pandas as pd
-from gensim.utils import simple_preprocess
+
+# try to import gensim's simple_preprocess; if gensim isn't available, use a lightweight fallback
+try:
+    from gensim.utils import simple_preprocess
+except Exception:
+    import re
+
+    def simple_preprocess(text):
+        """
+        Lightweight fallback for gensim.utils.simple_preprocess.
+        - lowercases
+        - removes non-letter characters
+        - splits on whitespace
+        """
+        if not isinstance(text, str):
+            text = str(text)
+        text = text.lower()
+        # keep letters and spaces
+        text = re.sub(r'[^a-z\s]', ' ', text)
+        tokens = [t for t in text.split() if len(t) > 0]
+        return tokens
 
 
 # words we want to visualise — 50 diverse words across 5 topic groups
@@ -30,11 +50,11 @@ VISUAL_WORDS = [
 
 # colour map — one colour per topic group for scatter plots
 GROUP_COLORS = {
-    'sports':    ('#4C9BE8', ['football','cricket','tennis','goal','bat','ball','coach','player','stadium','match']),
-    'food':      ('#E87B4C', ['pizza','burger','rice','apple','banana','coffee','tea','bread','milk','cake']),
-    'tech':      ('#7B4CE8', ['computer','python','java','ai','data','network','cloud','server','robot','algorithm']),
-    'lifestyle': ('#4CE87B', ['music','movie','book','school','teacher','student','doctor','hospital','travel','car']),
-    'devices':   ('#E84C7B', ['phone','camera','internet','software','hardware','keyboard','mouse','monitor','science','math']),
+    'sports':    ('#4C9BE8', ['football', 'cricket', 'tennis', 'goal', 'bat', 'ball', 'coach', 'player', 'stadium', 'match']),
+    'food':      ('#E87B4C', ['pizza', 'burger', 'rice', 'apple', 'banana', 'coffee', 'tea', 'bread', 'milk', 'cake']),
+    'tech':      ('#7B4CE8', ['computer', 'python', 'java', 'ai', 'data', 'network', 'cloud', 'server', 'robot', 'algorithm']),
+    'lifestyle': ('#4CE87B', ['music', 'movie', 'book', 'school', 'teacher', 'student', 'doctor', 'hospital', 'travel', 'car']),
+    'devices':   ('#E84C7B', ['phone', 'camera', 'internet', 'software', 'hardware', 'keyboard', 'mouse', 'monitor', 'science', 'math']),
 }
 
 
@@ -48,7 +68,8 @@ def load_corpus(csv_path: str) -> pd.DataFrame:
     Returns:
         DataFrame with the raw text column
     """
-    df = pd.read_csv(csv_path)          # reads the CSV — expects a 'text' column in first position
+    df = pd.read_csv(
+        csv_path)          # reads the CSV — expects a 'text' column in first position
     print(f"Loaded {len(df)} sentences from {csv_path}")
     return df
 
@@ -70,7 +91,8 @@ def preprocess(df: pd.DataFrame) -> list:
     """
     sentences = df.iloc[:, 0].astype(str).apply(simple_preprocess).tolist()
     total_tokens = sum(len(s) for s in sentences)
-    print(f"Preprocessed → {len(sentences)} sentences | {total_tokens} total tokens")
+    print(
+        f"Preprocessed → {len(sentences)} sentences | {total_tokens} total tokens")
     return sentences
 
 
@@ -103,8 +125,10 @@ def filter_vocab_words(model_wv, word_list: list) -> tuple:
     Returns:
         (filtered_words, missing_words) — both as lists
     """
-    present = [w for w in word_list if w in model_wv]      # only keep words with vectors
-    missing = [w for w in word_list if w not in model_wv]  # track what got dropped
+    present = [
+        w for w in word_list if w in model_wv]      # only keep words with vectors
+    # track what got dropped
+    missing = [w for w in word_list if w not in model_wv]
     if missing:
         print(f"Words not in vocab (skipped): {missing}")
     print(f"Visualising {len(present)} / {len(word_list)} words")

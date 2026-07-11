@@ -85,7 +85,7 @@ def send_prompt(
         the Bedrock console ("Model access" page) — a very common first-run
         error that's worth calling out explicitly (see README troubleshooting).
     """
-    from src.utils.config import config  # local import keeps default resolution lazy
+    from utils.config import config  # local import keeps default resolution lazy
 
     resolved_model_id = model_id or config.default_model_id
     client = get_bedrock_runtime_client()

@@ -1,0 +1,17 @@
+# --- Embeddings ---
+sentence-transformers>=3.0.0   # SBERT models (all-MiniLM-L6-v2) for sentence embeddings
+
+# --- Similarity & dimensionality reduction ---
+scikit-learn>=1.4.0             # t-SNE (cosine similarity itself is done with plain numpy)
+numpy>=1.26.0
+
+# --- Visualization ---
+matplotlib>=3.8.0
+
+# --- Notebook ---
+jupyter>=1.0.0
+ipykernel>=6.29.0
+
+# --- Testing ---
+pytest>=8.2.0
+pytest-mock>=3.14.0

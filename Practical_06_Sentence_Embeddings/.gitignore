@@ -1,0 +1,47 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Environment / secrets ---
+.env
+.env.*
+
+# --- ML model cache & weights ---
+# sentence-transformers downloads all-MiniLM-L6-v2 to the HF cache (usually
+# ~/.cache), not into this repo -- these entries only matter if a
+# CACHE_FOLDER is ever pointed at a local project directory instead.
+.cache/
+*.pt
+*.bin
+*.safetensors
+
+# --- Generated outputs (reproducible by re-running the notebook, not source) ---
+outputs/*.png
+outputs/*.pdf
+!outputs/.gitkeep
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

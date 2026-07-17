@@ -1,0 +1,15 @@
+# --- Embeddings (shared by both sub-projects) ---
+sentence-transformers>=3.0.0
+
+# --- Part 1: local FAISS ---
+faiss-cpu>=1.8.0                # CPU build is enough at this scale (100-150 vectors)
+numpy>=1.26.0
+
+# --- Part 2: AWS OpenSearch Serverless ---
+boto3>=1.34.130                  # control-plane: create collection, policies
+opensearch-py>=2.6.0             # data-plane: create index, bulk-index docs, run queries
+python-dotenv>=1.0.1              # keeps AWS region / collection name out of hardcoded values
+
+# --- Notebook ---
+jupyter>=1.0.0
+ipykernel>=6.29.0

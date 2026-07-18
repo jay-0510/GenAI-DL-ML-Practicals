@@ -1,0 +1,51 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Environment / secrets ---
+# AWS region, collection name, endpoint -- none are secret by themselves, but
+# .env is where anyone would be tempted to paste real AWS values, so keep it
+# out of git as a matter of habit.
+.env
+.env.*
+
+# --- AWS ---
+# Never commit resolved OpenSearch Serverless endpoints or collection IDs
+# generated at runtime (e.g. if a script writes them to a local file).
+*.collection_endpoint
+.aws-sam/
+
+# --- ML model cache ---
+# sentence-transformers downloads all-MiniLM-L6-v2 to the HF cache
+# (usually ~/.cache), not into this repo.
+.cache/
+*.pt
+*.bin
+*.safetensors
+
+# --- FAISS index files ---
+# If the notebook ever saves a FAISS index to disk (faiss.write_index),
+# it's a regenerable build artifact, not source.
+*.faiss
+*.index
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

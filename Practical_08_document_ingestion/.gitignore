@@ -1,0 +1,44 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Data: user-supplied inputs and pipeline-generated outputs ---
+# Raw PDFs are user-supplied (potentially large/copyrighted source
+# documents) and extracted text is a regenerable Textract output --
+# neither belongs in git. Folders are kept via .gitkeep so the expected
+# structure still exists on a fresh clone.
+data/raw_pdfs/*.pdf
+data/extracted_text/*.txt
+!data/raw_pdfs/.gitkeep
+!data/extracted_text/.gitkeep
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

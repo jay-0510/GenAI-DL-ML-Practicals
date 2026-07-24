@@ -1,0 +1,25 @@
+# --- AWS ---
+boto3>=1.34.130                    # S3 upload, Textract, OpenSearch Serverless control plane
+
+# --- LangChain (split packages -- see src/ modules' docstrings for why each is used) ---
+langchain-core>=0.2.0
+langchain-text-splitters>=0.2.0     # RecursiveCharacterTextSplitter
+langchain-aws>=0.1.6                 # BedrockEmbeddings
+langchain-community>=0.2.5            # OpenSearchVectorSearch
+
+# --- OpenSearch data-plane auth ---
+opensearch-py>=2.6.0
+requests-aws4auth>=1.2.3               # see vectorstore/opensearch_store.py docstring for why
+                                       # this is used instead of opensearch-py's own AWSV4SignerAuth
+
+# --- Config ---
+pydantic-settings>=2.3.0
+python-dotenv>=1.0.1
+
+# --- Notebook ---
+jupyter>=1.0.0
+ipykernel>=6.29.0
+
+# --- Testing ---
+pytest>=8.2.0
+pytest-mock>=3.14.0
